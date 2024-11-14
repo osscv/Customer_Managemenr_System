@@ -58,7 +58,7 @@ To set up and change the MySQL password for the **Customer Management System**, 
 Clone the repository to your local machine using the following command:
 
 ```bash
-git clone https://github.com/osscv/Customer_Managemenr_System.zip
+curl https://github.com/osscv/Customer_Managemenr_System.zip
 ```
 
 ### 2. **Upload to Your Server**
