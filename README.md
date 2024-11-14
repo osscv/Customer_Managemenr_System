@@ -210,6 +210,15 @@ CREATE TABLE `customers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
 
+#### Sample Data Insertion for `Customer` Table
+
+```sql
+INSERT INTO `customers` (`ID`, `Name`, `HP_Number`, `Age`, `Nationality`, `Language`, `Status`, `Agent`) VALUES
+(1, 'YSoon', '012348312', 20, 'Malaysia', 'Chinese/Dialect', 'Unknown', 'KLY'),
+(2, 'KYean Seo', '0107838203', 40, 'Malaysia', 'Chinese/Dialect', 'Unknown', 'TVB'),
+(3, 'Cheng Yi Mun', '01234403', 21, 'Malaysia', 'Chinese/Dialect', 'Unknown', 'TVB'),
+```
+
 ## Table Indexes
 
 ### `additional_records` Table Indexes
