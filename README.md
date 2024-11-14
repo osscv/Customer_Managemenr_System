@@ -5,6 +5,10 @@ This is the **V3 Version**. The final version has not been released publicly, as
 
 Developed by: [www.dkly.top](https://www.dkly.top)
 
+### Additional Notes:
+- **Business Use**: For commercial purposes, please contact me via email to request authorization.
+- **Academic Use**: If using this project as a reference or incorporating its code into your assignment, please ensure you properly cite this project and specify the code that you have used to avoid any issues with plagiarism.
+  
 ### 🛠 Language and Tools
 
 <div align="left">
@@ -149,7 +153,105 @@ Once you've updated the password in both MySQL and `config.php`, test your conne
 
 ---
 
-### Additional Notes:
-- **Business Use**: For commercial purposes, please contact me via email to request authorization.
-- **Academic Use**: If using this project as a reference or incorporating its code into your assignment, please ensure you properly cite this project and specify the code that you have used to avoid any issues with plagiarism.
+## SQL schema for for `callingsys`:
+
+### Table: `additional_records`
+This table stores additional records.
+
+```sql
+CREATE TABLE `additional_records` (
+  `ID` int NOT NULL,
+  `Customer_ID` int DEFAULT NULL,
+  `Important_Remarks` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Package` varchar(150) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Appointment_Date_Time` datetime DEFAULT NULL,
+  `Agent_Name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Customer_Spoken` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Agent_Remarks` text COLLATE utf8mb4_general_ci,
+  `Status` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Added_Date_Time` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+```
+
+### Table: `agents`
+
+This table stores agent details.
+
+```sql
+CREATE TABLE `agents` (
+  `ID` int NOT NULL,
+  `Agent_Name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Remarks` text COLLATE utf8mb4_general_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+```
+
+#### Sample Data Insertion for `agents` Table
+
+```sql
+INSERT INTO `agents` (`ID`, `Agent_Name`, `Password`, `Remarks`) VALUES
+(1, 'Khoo', 'KLY123', 'Admin');
+```
+
+### Table: `customers`
+
+This table stores customer details.
+
+```sql
+CREATE TABLE `customers` (
+  `ID` int NOT NULL,
+  `Name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `HP_Number` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
+  `Age` int NOT NULL,
+  `Nationality` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `Language` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Status` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
+  `Agent` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+```
+
+## Table Indexes
+
+### `additional_records` Table Indexes
+
+```sql
+ALTER TABLE `additional_records`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Customer_ID` (`Customer_ID`);
+```
+
+### `agents` Table Indexes
+
+```sql
+ALTER TABLE `agents`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Agent_Name` (`Agent_Name`);
+```
+
+### `customers` Table Indexes
+
+```sql
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`ID`);
+```
+
+## Auto-Increment
+
+Make sure that the tables that require auto-increment for primary keys are configured properly.
+
+```sql
+-- Example for auto-increment on the `ID` column:
+ALTER TABLE `additional_records` MODIFY `ID` int NOT NULL AUTO_INCREMENT;
+ALTER TABLE `agents` MODIFY `ID` int NOT NULL AUTO_INCREMENT;
+ALTER TABLE `customers` MODIFY `ID` int NOT NULL AUTO_INCREMENT;
+```
+
+## 限制表 `additional_records`
+```sql
+ALTER TABLE `additional_records`
+  ADD CONSTRAINT `fk_customer` FOREIGN KEY (`Customer_ID`) REFERENCES `customers` (`ID`) ON DELETE SET NULL;
+COMMIT;
+```
+
+
 
