@@ -3,6 +3,10 @@
 Welcome to the **Customer Management System**! This project is a web-based application (WebApp) designed to enable admins and agents to conveniently manage customer data. 
 This is the **V3 Version**. The final version has not been released publicly, as it was used for another project, but all functionalities are working well and can be used.
 
+*Tips Defult Login Details: 
+Admin - Username:TEST , Password:TEST123
+Agent - Username:TEST , Password:TEST123
+
 Developed by: [www.dkly.top](https://www.dkly.top)
 
 ### Additional Notes:
